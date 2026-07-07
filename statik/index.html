@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBCreator - Yapay Zeka Destekli Premium DBMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/statik/css/stil.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <!-- GİRİŞ / LANDING EKRANI (BAĞLANTI YOKKEN GÖSTERİLECEK) -->
+    <div id="landing-ekrani" class="landing-sarmalayici">
+        <div class="landing-arka-plan-efekti"></div>
+        <div class="landing-kutu animate-fade-in">
+            <div class="landing-ust">
+                <div class="cyber-logo">DBCREATOR</div>
+                <div class="surum-tag">ENTERPRISE CONSOLE v4.0</div>
+                <h1>Yapay Zeka Destekli DBMS Portal</h1>
+                <p>Veritabanlarınızı tasarlayın, analiz edin ve yapay zeka ile yönetin.</p>
+            </div>
+
+            <!-- API Key Bölümü -->
+            <div class="api-giris-kutusu">
+                <div class="giris-etiket">
+                    <span>✦</span> Gemini API Anahtarı
+                </div>
+                <div class="input-sarmalayici">
+                    <input type="password" id="api-anahtari" placeholder="AI Özellikleri İçin API Anahtarınızı Girin (Örn: AIzaSy...)">
+                </div>
+            </div>
+
+            <!-- Bağlantı Seçenekleri Grid -->
+            <div class="baglanti-secenekleri-grid">
+                
+                <!-- Seçenek 1: Dosyadan SQL/DB Seç -->
+                <div class="secenek-kart" id="kart-dosya-sec">
+                    <div class="secenek-ikon">📁</div>
+                    <h3>Yerel Dosya Bağla</h3>
+                    <p>Masaüstünüzden SQLite (.db, .sqlite) veya SQL şema (.sql) dosyası yükleyin.</p>
+                    <div class="kart-aksiyon">
+                        <button id="dosya-sec-btn" class="cyber-btn primary">Dosya Seç</button>
+                        <span id="dosya-adi-etiketi" class="secilen-dosya-yazisi">Dosya seçilmedi</span>
+                    </div>
+                </div>
+
+                <!-- Seçenek 2: Linkten Çek -->
+                <div class="secenek-kart" id="kart-link-cek">
+                    <div class="secenek-ikon">🌐</div>
+                    <h3>Web Sitesinden Çek</h3>
+                    <p>Bir web sitesi adresi girin, yapay zeka sitedeki tüm verileri ayıklayıp veritabanı yapsın.</p>
+                    <div class="kart-aksiyon-dikey">
+                        <input type="text" id="link-girdisi" placeholder="https://ornek.com/veriler">
+                        <button id="link-cek-btn" class="cyber-btn secondary">Veri Çek & DB Oluştur</button>
+                    </div>
+                </div>
+
+                <!-- Seçenek 3: Yeni DB Oluştur -->
+                <div class="secenek-kart" id="kart-yeni-db">
+                    <div class="secenek-ikon">⚡</div>
+                    <h3>Yeni Boş Veritabanı</h3>
+                    <p>Sıfırdan temiz bir SQLite veritabanı oluşturarak yapay zeka ile tablo eklemeye başlayın.</p>
+                    <div class="kart-aksiyon-dikey">
+                        <input type="text" id="yeni-db-adi" placeholder="db_adi">
+                        <button id="yeni-db-btn" class="cyber-btn secondary">Oluştur & Bağlan</button>
+                    </div>
+                </div>
+
+                <!-- Seçenek 4: Örnek DB ile Başla -->
+                <div class="secenek-kart" id="kart-ornek-db">
+                    <div class="secenek-ikon">🚀</div>
+                    <h3>Hızlı Başlangıç</h3>
+                    <p>Sistemde hazır bulunan 200,000 satırlık örnek veritabanına anında bağlanıp test edin.</p>
+                    <div class="kart-aksiyon">
+                        <button id="ornek-db-btn" class="cyber-btn accent">Örnek Veritabanına Bağlan</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ANA DASHBOARD DÜZENİ -->
+    <div id="ana-dashboard" class="dashboard-sarmalayici" style="display: none;">
+        
+        <!-- ÜST KONTROL BAR -->
+        <header class="ust-kontrol-bar">
+            <div class="sol-logo-grubu">
+                <div class="logo-sembol">⚙️</div>
+                <div class="logo-yazi">DBCREATOR</div>
+            </div>
+            
+            <div class="aktif-veritabani-bilgisi">
+                <span class="durum-isareti"><span class="nokta aktif" id="durum-noktasi"></span></span>
+                <span id="bagli-db-yolu" class="db-yolu-metin">Bağlantı Bekleniyor...</span>
+            </div>
+
+            <div class="ust-bar-sag">
+                <!-- Bildirim Çanı -->
+                <div class="bildirim-alani">
+                    <div class="bildirim-ikonu" id="bildirim-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="bildirim-sayaci" id="bildirim-sayaci" style="display: none;">0</span>
+                    </div>
+                    <div class="bildirim-paneli" id="bildirim-paneli">
+                        <div class="bildirim-baslik">AI İşlem Logları</div>
+                        <ul class="bildirim-listesi" id="bildirim-listesi">
+                            <li class="bos-bildirim">Henüz AI işlemi tetiklenmedi.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button id="baglantiyi-kes-btn" class="cyber-btn danger-sm">Bağlantıyı Kes</button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD GRID LAYOUT (SOL SIDEBAR | ORTA TREE EXPLORER | ANA ALAN | SAĞ CHAT PANELİ) -->
+        <div class="ana-grid-konteyner">
+            
+            <!-- 1. SOL SIDEBAR: NAVİGASYON & GLOBAL İSTATİSTİKLER -->
+            <aside class="sidebar-sol">
+                
+                <!-- Global Metrikler -->
+                <div class="sidebar-kisim">
+                    <h4 class="kisim-baslik">SİSTEM METRİKLERİ</h4>
+                    <div class="metrikler-dikey">
+                        <div class="metrik-kutu">
+                            <span class="metrik-etiket">Tablo Sayısı</span>
+                            <span class="metrik-deger" id="metrik-tablo">-</span>
+                        </div>
+                        <div class="metrik-kutu">
+                            <span class="metrik-etiket">Toplam Satır</span>
+                            <span class="metrik-deger" id="metrik-satir">-</span>
+                        </div>
+                        <div class="metrik-kutu">
+                            <span class="metrik-etiket">Dosya Boyutu</span>
+                            <span class="metrik-deger" id="metrik-boyut">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mod Navigasyonu -->
+                <div class="sidebar-kisim">
+                    <h4 class="kisim-baslik">KONSOL MODLARI</h4>
+                    <nav class="sidebar-nav">
+                        <button class="nav-link aktif" data-hedef="panel-veri">
+                            <span class="nav-ikon">📑</span> Excel Tablo Verileri
+                        </button>
+                        <button class="nav-link" data-hedef="panel-analiz">
+                            <span class="nav-ikon">⚡</span> Gelişmiş AI Analizi
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Veritabanı Yönetimi & İndirme -->
+                <div class="sidebar-kisim" style="margin-top: auto;">
+                    <h4 class="kisim-baslik">KAYNAK ÇIKTI AL</h4>
+                    <div class="indirme-buton-grubu">
+                        <button id="vt-indir-db-btn" class="cyber-btn green-sm">SQLite Dosyası (.db) İndir</button>
+                        <button id="vt-indir-btn" class="cyber-btn outline-sm">SQL Script (.sql) İndir</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 2. ORTA TREE EXPLORER (DİNAMİK VERİ YAPISI) -->
+            <section class="explorer-orta">
+                <div class="explorer-baslik">
+                    <h3>VERİ YAPISI EXPLORER</h3>
+                    <p>Tablo & Sütun Ağaç Şeması</p>
+                </div>
+                <div class="tree-konteyner">
+                    <ul id="sidebar-tablo-listesi" class="tablo-tree">
+                        <!-- Javascript ile doldurulacak -->
+                        <li class="tablo-tree-item bos-tree">Veritabanı yapısı aranıyor...</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 3. ANA BÖLGE (TABLO GRID + SQL CONSOLE) -->
+            <main class="ana-viewport">
+                
+                <!-- Yükleniyor Göstergesi -->
+                <div id="analiz-yukleniyor" class="viewport-loading" style="display: none;">
+                    <div class="loading-scanner"></div>
+                    <div class="loading-text">Veritabanı Üzerinde İşlem Yapılıyor...</div>
+                </div>
+
+                <!-- MOD 1: EXCEL GRID GÖRÜNÜMÜ -->
+                <div id="panel-veri" class="viewport-panel aktif">
+                    <div class="panel-ust-baslik">
+                        <div>
+                            <h2 id="aktif-tablo-baslik">Seçili Tablo Yok</h2>
+                            <p class="panel-alt-bilgi">Düzenlemek için hücreye çift tıklayın. Kaydetmek için hücre dışına tıklayın.</p>
+                        </div>
+                        
+                        <div class="tablo-aksiyonlar" id="tablo-aksiyonlar" style="display: none;">
+                            <input type="text" id="tablo-arama-filtre" placeholder="Tablo içinde ara..." class="tablo-arama-input">
+                            <button id="satir-ekle-btn" class="cyber-btn secondary-sm">Satır Ekle</button>
+                            <button id="secilenleri-sil-btn" class="cyber-btn danger-sm">Seçilenleri Sil</button>
+                            <button id="tablo-sil-btn" class="cyber-btn outline-danger-sm">Tabloyu Sil</button>
+                            <button id="disa-aktar-btn" class="cyber-btn outline-sm">CSV İndir</button>
+                        </div>
+                    </div>
+
+                    <!-- Excel Tablosu Bölgesi -->
+                    <div class="excel-grid-sarmal">
+                        <div id="veri-tablosu" class="excel-veri-tablosu">
+                            <div class="tablo-bos-durum">
+                                <div class="bos-durum-ikon">📊</div>
+                                <h3>Tablo Verisi Yüklenmedi</h3>
+                                <p>Sol taraftaki "Veri Yapısı Explorer" ağacından bir tablo seçerek verilerini Excel hücresi gibi düzenleyebilirsiniz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DAHİLİ SQL RUNNER KONSOLU (ALTTA SABİT/DARALTILABİLİR) -->
+                    <div class="sql-runner-sabit">
+                        <div class="sql-runner-ust" id="sql-runner-toggle">
+                            <div class="baslik-grubu">
+                                <span class="konsol-ikon">⌥</span>
+                                <h4>SQL Sorgu Çalıştırma Konsolu</h4>
+                            </div>
+                            <span class="ok-isareti">▲</span>
+                        </div>
+                        <div class="sql-runner-icerik" id="sql-runner-icerik">
+                            <div class="sorgu-kutusu-grubu">
+                                <textarea id="manuel-sorgu" placeholder="SELECT * FROM kullanicilar LIMIT 50;"></textarea>
+                                <button id="manuel-sorgu-btn" class="cyber-btn primary">Sorguyu Çalıştır</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- MOD 2: GELİŞMİŞ AI ANALİZİ PANELİ -->
+                <div id="panel-analiz" class="viewport-panel">
+                    <div class="panel-ust-baslik">
+                        <h2>Gelişmiş Yapay Zeka Taramaları</h2>
+                        <p class="panel-alt-bilgi">Veritabanınız üzerinde anomali tespitleri yapın, ilişkileri haritalandırın ve API kodları üretin.</p>
+                    </div>
+
+                    <div class="analiz-aksiyon-kartlari">
+                        <div class="analiz-kart">
+                            <h4>Veri Tutarlılığı & Anomali Tarama</h4>
+                            <p>Veritabanınızdaki hatalı, mantıksız değerleri, boş hücreleri ve tutarsız verileri tarayarak rapor hazırlar.</p>
+                            <button id="anomali-btn" class="cyber-btn secondary">Taramayı Başlat</button>
+                        </div>
+                        <div class="analiz-kart">
+                            <h4>Gizli İlişkileri Keşfet</h4>
+                            <p>Foreign Key kısıtlamaları olmasa bile tablolar arasındaki isim ve veri bağıntılarını analiz eder.</p>
+                            <button id="iliski-btn" class="cyber-btn secondary">İlişkileri Çıkar</button>
+                        </div>
+                        <div class="analiz-kart">
+                            <h4>FastAPI REST API Kodu Üret</h4>
+                            <p>Mevcut şemayı kullanarak bu veritabanı için çalışmaya hazır tam kapsamlı API kodu yazar.</p>
+                            <button id="api-uret-btn" class="cyber-btn secondary">API Kodu Yazdır</button>
+                        </div>
+                    </div>
+
+                    <div class="analiz-sonuc-kart">
+                        <div class="sonuc-kart-baslik">
+                            <span>🤖 AI ANALİZ RAPORU ÇIKTISI</span>
+                            <button class="cyber-btn outline-sm" onclick="navigator.clipboard.writeText(document.getElementById('ileri-yz-sonuc').innerText); alert('Kopyalandı!');">Kodu/Raporu Kopyala</button>
+                        </div>
+                        <pre id="ileri-yz-sonuc" class="analiz-sonuc-alani">Taramaları başlatmak için yukarıdaki aksiyon butonlarından birine tıklayın...</pre>
+                    </div>
+
+                    <!-- Toplu Test Verisi Üretici Bölümü -->
+                    <div class="analiz-sonuc-kart" style="margin-top: 2rem;">
+                        <div class="sonuc-kart-baslik">
+                            <span>🧪 TABLOYA SENTETİK VERİ ÜRETİCİ</span>
+                        </div>
+                        <div class="sahte-veri-formu">
+                            <div class="form-alan">
+                                <label>Hedef Tablo</label>
+                                <input type="text" id="uret-tablo-adi" placeholder="Örn: kullanicilar">
+                            </div>
+                            <div class="form-alan">
+                                <label>Üretilecek Satır Sayısı</label>
+                                <input type="number" id="uret-adet" value="20" min="1" max="500">
+                            </div>
+                            <button id="veri-uret-btn" class="cyber-btn primary">Sahte Verileri Ekle</button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- 4. SAĞ persistent CHAT PANELİ (ROBOT ASİSTAN & CONVERSATIONS) -->
+            <aside class="chat-drawer-sag" id="chat-drawer-sag">
+                <div class="chat-resizer" id="chat-resizer"></div>
+                
+                <!-- Chat Başlık ve Robot Face -->
+                <div class="chat-ust-bolge">
+                    <div class="robot-kutusu">
+                        <!-- CYBERNETIC SVG ROBOT FACE (DYNAMIC ANIMATED 2D) -->
+                        <svg class="robot-face-svg" width="90" height="90" viewBox="0 0 100 100" id="robot-face">
+                            <defs>
+                                <radialGradient id="eye-glow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#0284c7" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+                                </radialGradient>
+                                <radialGradient id="eye-glow-thinking" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#d97706" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+                                </radialGradient>
+                                <radialGradient id="eye-glow-success" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#16a34a" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+                                </radialGradient>
+                                <radialGradient id="eye-glow-error" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#dc2626" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <!-- Face Base Panel -->
+                            <rect x="15" y="20" width="70" height="60" rx="16" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2.5" class="face-plate"/>
+                            
+                            <!-- Ears / Side Elements -->
+                            <rect x="7" y="38" width="8" height="24" rx="4" fill="#cbd5e1"/>
+                            <rect x="85" y="38" width="8" height="24" rx="4" fill="#cbd5e1"/>
+                            
+                            <!-- Antenna -->
+                            <line x1="50" y1="20" x2="50" y2="7" stroke="#cbd5e1" stroke-width="3"/>
+                            <circle cx="50" cy="5" r="4.5" fill="#0284c7" class="anten-tip" id="robot-anten"/>
+
+                            <!-- Eye Screen Area -->
+                            <rect x="25" y="32" width="50" height="26" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+
+                            <!-- Eyes (L/R) -->
+                            <g class="eyes-group" id="robot-eyes">
+                                <!-- Default/Idle Eyes -->
+                                <circle cx="38" cy="45" r="5" fill="#0284c7" class="eye-pupil"/>
+                                <circle cx="38" cy="45" r="10" fill="url(#eye-glow)" class="eye-pulse" opacity="0.4"/>
+
+                                <circle cx="62" cy="45" r="5" fill="#0284c7" class="eye-pupil"/>
+                                <circle cx="62" cy="45" r="10" fill="url(#eye-glow)" class="eye-pulse" opacity="0.4"/>
+                            </g>
+
+                            <!-- Voice Grille (Mouth representation) -->
+                            <g class="voice-grille" id="robot-mouth">
+                                <line x1="38" y1="67" x2="62" y2="67" stroke="#0284c7" stroke-width="2" class="voice-line-1"/>
+                                <line x1="42" y1="71" x2="58" y2="71" stroke="#0284c7" stroke-width="2" class="voice-line-2"/>
+                                <line x1="46" y1="75" x2="54" y2="75" stroke="#0284c7" stroke-width="2" class="voice-line-3"/>
+                            </g>
+                        </svg>
+                        <div class="robot-etiket">
+                            <h4 id="robot-durum-baslik">DBCoors Asistan</h4>
+                            <p id="robot-durum-alt">Sistem Hazır / Idle</p>
+                        </div>
+                    </div>
+
+                    <!-- Sohbet Operasyon Butonları -->
+                    <div class="chat-yonetici-bar">
+                        <select id="ai-model-secici" class="sohbet-dropdown" style="max-width: 85px; flex-shrink: 0; background-color: var(--bg-surface); color: var(--color-cyan); font-weight: 600;" title="AI Modeli">
+                            <option value="gemini">Gemini</option>
+                            <option value="qwen">Qwen</option>
+                        </select>
+                        <select id="sohbet-secici" class="sohbet-dropdown">
+                            <!-- Sohbet oturumları buraya yüklenecek -->
+                        </select>
+                        <button id="yeni-sohbet-btn" class="cyber-btn primary-sm" title="Yeni Sohbet Aç">+</button>
+                        <button id="sohbet-sil-btn" class="cyber-btn danger-sm" title="Mevcut Sohbeti Sil">×</button>
+                    </div>
+                </div>
+
+                <!-- Chat Mesaj Alanı -->
+                <div id="chat-gecmisi" class="chat-mesaj-listesi">
+                    <div class="mesaj asistan">
+                        <div class="mesaj-icerik">Merhaba! Ben DBCoors veritabanı yapay zeka asistanıyım. Veritabanınızı yönetebilir, tablolar ekleyebilir veya SQL sorguları hazırlayabilirim. Nasıl yardımcı olabilirim?</div>
+                    </div>
+                </div>
+
+                <!-- Chat Girdi Bölümü -->
+                <div class="chat-girdi-konteyner">
+                    <textarea id="chat-girdi" placeholder="Örn: kullanicilar tablosuna yaş kolonu ekle..."></textarea>
+                    <button id="chat-gonder-btn" class="cyber-btn accent-sm">Gönder</button>
+                </div>
+
+            </aside>
+            
+        </div>
+    </div>
+
+    <!-- AI İŞLEM MODAL PORTALI (AI İŞLEMLER YAPILIRKEN EKRA ORTASINDA ÇIKAN HOVER EKRAN) -->
+    <div id="ai-islem-modal" class="islem-modal-arka-plan" style="display: none;">
+        <div class="islem-modal-kutu">
+            <div class="islem-modal-baslik">
+                <span class="islem-modal-parilti">✦</span>
+                <h3>DBCoors Yapay Zeka İşlemi</h3>
+            </div>
+            <div class="islem-modal-icerik">
+                <div class="islem-yukleyici">
+                    <svg class="donen-yukleyici" viewBox="0 0 50 50">
+                        <circle class="yol" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                    </svg>
+                </div>
+                <p id="islem-modal-metni">İşlem yapılıyor, lütfen bekleyin...</p>
+                <div class="islem-kod-onizleme" id="islem-kod-onizleme" style="display: none;">
+                    <pre><code id="islem-kod-alani"></code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÖZEL DIALOG MODAL (Alert/Confirm/Prompt Sistemi) -->
+    <div id="custom-dialog-modal" class="dialog-modal-arka-plan" style="display: none;">
+        <div class="dialog-modal-kutu">
+            <div class="dialog-modal-baslik">
+                <span class="dialog-modal-ikon" id="dialog-ikon">💬</span>
+                <h3 id="dialog-baslik">Sistem İletisi</h3>
+            </div>
+            <div class="dialog-modal-icerik">
+                <p id="dialog-mesaj">İşlemi onaylıyor musunuz?</p>
+                <div class="dialog-girdi-grubu" id="dialog-girdi-grubu" style="display: none;">
+                    <input type="text" id="dialog-girdi-alan" placeholder="">
+                </div>
+                <div class="dialog-buton-grubu">
+                    <button id="dialog-iptal-btn" class="cyber-btn secondary-sm">İptal</button>
+                    <button id="dialog-tamam-btn" class="cyber-btn primary-sm">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/statik/js/uygulama.js?v=4"></script>
+</body>
+</html>

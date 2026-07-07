@@ -1,0 +1,18 @@
+# Python Cache
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
+
+# Virtual Environment
+venv/
+env/
+
+# Uploaded Database Files
+yuklenenler/*.db
+yuklenenler/*.sql
+yuklenenler/*.db-journal
+*.db
+!ornek.db  # (Opsiyonel) Örnek bir veritabanı tutmak isterseniz

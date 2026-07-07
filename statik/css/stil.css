@@ -1,0 +1,1761 @@
+/* -------------------------------------------------------------
+   DBCreator Ultra-Minimalist Trustworthy Corporate Light Theme
+   Extremely premium, spacious, elegant and secure aesthetics
+   ------------------------------------------------------------- */
+
+:root {
+    --bg-main: #f8fafc; /* Slate 50 - Ultra-clean background */
+    --bg-surface: #ffffff; /* Pure white surface */
+    --bg-surface-glow: #f1f5f9; /* Slate 100 - Gentle focus/hover */
+    --bg-input: #ffffff;
+    --border-color: #e2e8f0; /* Slate 200 - Very fine border */
+    --border-color-soft: #f1f5f9; /* Slate 100 - Hairline separators */
+    
+    --text-primary: #0f172a; /* Slate 900 - Deep slate for readability */
+    --text-secondary: #475569; /* Slate 600 - Muted secondary */
+    --text-muted: #94a3b8; /* Slate 400 - Subtitle slate */
+    
+    --color-cyan: #0284c7; /* Sky blue corporate accent */
+    --color-blue: #0369a1; /* Deep slate blue */
+    --color-purple: #4f46e5; /* Indigo accent */
+    --color-green: #10b981; /* Emerald safe green */
+    --color-red: #ef4444; /* Rose warning red */
+    --color-yellow: #f59e0b; /* Amber warning */
+    
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
+    
+    --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* Soft ambient box shadows (Notion/Stripe style) */
+    --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+    --shadow-lg: 0 16px 24px -6px rgba(15, 23, 42, 0.06), 0 8px 16px -4px rgba(15, 23, 42, 0.03);
+    --shadow-glowing: 0 0 15px rgba(2, 132, 199, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Premium Scrollbars (Thinner & cleaner) */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-cyan);
+}
+
+/* Typography elements */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+}
+
+code, pre {
+    font-family: var(--font-mono);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.08);
+}
+
+/* Buttons styling (Minimalist outlines & flat solids) */
+button, .cyber-btn {
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    user-select: none;
+}
+
+.cyber-btn.primary {
+    background-color: var(--color-cyan);
+    color: white;
+    border: 1px solid rgba(3, 105, 161, 0.2);
+    box-shadow: var(--shadow-sm);
+}
+.cyber-btn.primary:hover {
+    background-color: var(--color-blue);
+    transform: translateY(-0.5px);
+    box-shadow: var(--shadow-md);
+}
+
+.cyber-btn.secondary {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+.cyber-btn.secondary:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+}
+
+.cyber-btn.accent {
+    background-color: var(--color-purple);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+.cyber-btn.accent:hover {
+    background-color: #4338ca;
+    transform: translateY(-0.5px);
+}
+
+.cyber-btn.danger-sm {
+    background-color: rgba(239, 68, 68, 0.04);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--color-red);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.76rem;
+}
+.cyber-btn.danger-sm:hover {
+    background-color: var(--color-red);
+    color: white;
+    border-color: var(--color-red);
+}
+
+.cyber-btn.outline-danger-sm {
+    background-color: transparent;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    color: var(--color-red);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.76rem;
+}
+.cyber-btn.outline-danger-sm:hover {
+    border-color: var(--color-red);
+    color: var(--color-red);
+    background-color: rgba(239, 68, 68, 0.03);
+}
+
+.cyber-btn.outline-sm {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.76rem;
+}
+.cyber-btn.outline-sm:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+}
+
+.cyber-btn.secondary-sm {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.76rem;
+}
+.cyber-btn.secondary-sm:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+}
+
+.cyber-btn.primary-sm {
+    background-color: var(--color-cyan);
+    color: white;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.76rem;
+}
+.cyber-btn.primary-sm:hover {
+    background-color: var(--color-blue);
+}
+
+.cyber-btn.green-sm {
+    background-color: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: var(--color-green);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
+    width: 100%;
+}
+.cyber-btn.green-sm:hover {
+    background-color: var(--color-green);
+    color: white;
+}
+
+.cyber-btn.accent-sm {
+    background-color: var(--color-cyan);
+    color: white;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
+}
+.cyber-btn.accent-sm:hover {
+    background-color: var(--color-blue);
+}
+
+/* -------------------------------------------------------------
+   LANDING PAGE STYLES (Ultra-Minimalist)
+   ------------------------------------------------------------- */
+.landing-sarmalayici {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background-color: var(--bg-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.landing-arka-plan-efekti {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.03) 0%, rgba(79, 70, 229, 0.01) 50%, transparent 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    filter: blur(80px);
+}
+
+.landing-kutu {
+    width: 100%;
+    max-width: 900px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 2;
+}
+
+.landing-ust {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.cyber-logo {
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+}
+
+.surum-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-top: 0.15rem;
+}
+
+.landing-ust h1 {
+    font-size: 1.75rem;
+    margin: 0.75rem 0 0.25rem;
+    color: var(--text-primary);
+}
+
+.landing-ust p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+}
+
+.api-giris-kutusu {
+    max-width: 540px;
+    margin: 0 auto 2.5rem;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.85rem 1.25rem;
+}
+
+.giris-etiket {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.baglanti-secenekleri-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.secenek-kart {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+.secenek-kart:hover {
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+.secenek-ikon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.secenek-kart h3 {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    color: var(--text-primary);
+}
+
+.secenek-kart p {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.kart-aksiyon {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.kart-aksiyon-dikey {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.secilen-dosya-yazisi {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 220px;
+}
+
+/* -------------------------------------------------------------
+   MAIN DASHBOARD LAYOUT
+   ------------------------------------------------------------- */
+.dashboard-sarmalayici {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-main);
+}
+
+.ust-kontrol-bar {
+    height: 52px;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color-soft);
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.sol-logo-grubu {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.logo-sembol {
+    font-size: 1rem;
+}
+
+.logo-yazi {
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+}
+
+.aktif-veritabani-bilgisi {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color-soft);
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    max-width: 450px;
+}
+
+.db-yolu-metin {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.durum-isareti {
+    display: flex;
+    align-items: center;
+}
+.nokta {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+}
+.nokta.aktif {
+    background-color: var(--color-green);
+    box-shadow: 0 0 6px var(--color-green);
+}
+.nokta.pasif {
+    background-color: var(--color-red);
+    box-shadow: 0 0 6px var(--color-red);
+}
+
+.ust-bar-sag {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* -------------------------------------------------------------
+   PANEL GRIDS
+   ------------------------------------------------------------- */
+.ana-grid-konteyner {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 52px);
+    overflow: hidden;
+}
+
+/* SIDEBAR SOL (Sleek Clean Outlines) */
+.sidebar-sol {
+    width: 230px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-color-soft);
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1rem;
+    flex-shrink: 0;
+}
+
+.sidebar-kisim {
+    margin-bottom: 1.5rem;
+}
+
+.kisim-baslik {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.metrikler-dikey {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.metrik-kutu {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+}
+.metrik-etiket {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.metrik-deger {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 0.05rem;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.75rem;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 500;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+.nav-link:hover {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+.nav-link.aktif {
+    background-color: var(--bg-main);
+    border-color: var(--border-color);
+    color: var(--color-cyan);
+    font-weight: 700;
+}
+.nav-ikon {
+    font-size: 0.85rem;
+}
+
+.indirme-buton-grubu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* ORTA EXPLORER (Clean Table List) */
+.explorer-orta {
+    width: 230px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-color-soft);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.explorer-baslik {
+    padding: 1rem 1rem 0.5rem;
+    border-bottom: 1px solid var(--border-color-soft);
+}
+.explorer-baslik h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+.explorer-baslik p {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+}
+
+.tree-konteyner {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+/* Tree Nested Structure (No heavy folder icons) */
+.tablo-tree {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.tree-item-konteyner {
+    display: flex;
+    flex-direction: column;
+}
+
+.tablo-isim-satiri {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+.tablo-isim-satiri:hover {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+.tablo-isim-satiri.secili {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    color: var(--color-cyan);
+    font-weight: 600;
+}
+
+.tablo-isim-sol {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.tablo-isim-sol::before {
+    content: "•";
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+.tablo-isim-satiri.secili .tablo-isim-sol::before {
+    color: var(--color-cyan);
+}
+
+.tablo-isim-sag-ok {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    transition: transform var(--transition-fast);
+}
+.tablo-isim-satiri.acik .tablo-isim-sag-ok {
+    transform: rotate(90deg);
+}
+
+.sutun-tree-listesi {
+    list-style: none;
+    margin-left: 0.85rem;
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--border-color-soft);
+    display: none;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: 0.15rem;
+    margin-bottom: 0.3rem;
+}
+.tablo-isim-satiri.acik + .sutun-tree-listesi {
+    display: flex;
+}
+
+.sutun-tree-item {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    padding: 0.1rem 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sutun-isim-sol {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.sutun-tip-yazisi {
+    font-size: 0.58rem;
+    background-color: var(--bg-main);
+    color: var(--text-secondary);
+    padding: 0 0.15rem;
+    border-radius: 2px;
+}
+
+.bos-tree {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    padding: 1rem 0;
+}
+
+/* ANA VIEWPORT */
+.ana-viewport {
+    flex: 1;
+    overflow: hidden;
+    background-color: var(--bg-main);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.viewport-panel {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 1.5rem;
+}
+.viewport-panel.aktif {
+    display: flex;
+}
+
+.panel-ust-baslik {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+.panel-ust-baslik h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+.panel-alt-bilgi {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-top: 0.1rem;
+}
+
+.tablo-aksiyonlar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.tablo-arama-filtre {
+    width: 150px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.74rem;
+    border-radius: 5px;
+    background-color: var(--bg-surface);
+    box-shadow: none;
+}
+
+/* Loading */
+.viewport-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(248, 250, 252, 0.85);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    backdrop-filter: blur(2px);
+}
+
+.loading-scanner {
+    width: 70px;
+    height: 2px;
+    background: var(--color-cyan);
+    position: relative;
+}
+
+.loading-text {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-cyan);
+}
+
+/* -------------------------------------------------------------
+   EXCEL GRID SPREADSHEET (Ultra Clean, No Vertical Borders)
+   ------------------------------------------------------------- */
+.excel-grid-sarmal {
+    flex: 1;
+    overflow: auto;
+    border: 1px solid var(--border-color-soft);
+    border-radius: 6px;
+    background-color: var(--bg-surface);
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.excel-veri-tablosu {
+    min-height: 100%;
+}
+
+.tablo-bos-durum {
+    padding: 4rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.bos-durum-ikon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+.tablo-bos-durum h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+}
+.tablo-bos-durum p {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    max-width: 320px;
+}
+
+/* Excel Style (Table lines are horizontal only, very elegant) */
+.real-excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    text-align: left;
+}
+
+.real-excel-table th,
+.real-excel-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-color-soft);
+    border-right: none; /* Removed vertical borders */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 240px;
+}
+
+.real-excel-table th {
+    background-color: var(--bg-main);
+    font-weight: 600;
+    color: var(--text-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    box-shadow: inset 0 -1px 0 var(--border-color-soft);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.real-excel-table tr:hover td {
+    background-color: var(--bg-main);
+}
+
+.real-excel-table tr.secili-satir td {
+    background-color: rgba(2, 132, 199, 0.04) !important;
+}
+
+.satir-checkbox {
+    cursor: pointer;
+}
+
+td[contenteditable="true"] {
+    outline: none;
+}
+td[contenteditable="true"]:focus {
+    background-color: var(--bg-surface);
+    box-shadow: inset 0 0 0 1px var(--color-cyan);
+}
+
+/* -------------------------------------------------------------
+   COLLAPSIBLE SQL RUNNER
+   ------------------------------------------------------------- */
+.sql-runner-sabit {
+    border: 1px solid var(--border-color-soft);
+    border-radius: 6px;
+    background-color: var(--bg-surface);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.sql-runner-ust {
+    padding: 0.65rem 0.85rem;
+    background-color: var(--bg-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sql-runner-ust h4 {
+    font-size: 0.76rem;
+    color: var(--text-primary);
+}
+
+.baslik-grubu {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.konsol-ikon {
+    font-size: 0.9rem;
+    color: var(--color-cyan);
+}
+
+.ok-isareti {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    transition: transform var(--transition-normal);
+}
+.sql-runner-sabit.kapali .ok-isareti {
+    transform: rotate(180deg);
+}
+
+.sql-runner-icerik {
+    padding: 0.85rem;
+    border-top: 1px solid var(--border-color-soft);
+    transition: max-height var(--transition-normal);
+    max-height: 180px;
+}
+.sql-runner-sabit.kapali .sql-runner-icerik {
+    max-height: 0;
+    padding: 0;
+    border-top: none;
+}
+
+.sorgu-kutusu-grubu {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-end;
+}
+
+.sorgu-kutusu-grubu textarea {
+    flex: 1;
+    height: 60px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    resize: none;
+    box-shadow: none;
+}
+.sorgu-kutusu-grubu button {
+    height: 60px;
+    padding: 0 1.15rem;
+}
+
+/* -------------------------------------------------------------
+   ADVANCED ANALYTICS PANEL
+   ------------------------------------------------------------- */
+.analiz-aksiyon-kartlari {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+}
+
+.analiz-kart {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 6px;
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+}
+.analiz-kart h4 {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+}
+.analiz-kart p {
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 0.85rem;
+    flex-grow: 1;
+}
+.analiz-kart button {
+    margin-top: auto;
+}
+
+.analiz-sonuc-kart {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sonuc-kart-baslik {
+    padding: 0.65rem 0.85rem;
+    background-color: var(--bg-main);
+    border-bottom: 1px solid var(--border-color-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+.analiz-sonuc-alani {
+    padding: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    line-height: 1.45;
+    color: var(--text-primary);
+    max-height: 250px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    background-color: var(--bg-main);
+}
+
+.sahte-veri-formu {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: flex-end;
+}
+.form-alan {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.form-alan label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------
+   PERSISTENT RIGHT CHAT DRAWER
+   ------------------------------------------------------------- */
+.chat-drawer-sag {
+    width: 300px;
+    min-width: 250px;
+    max-width: 800px;
+    background-color: var(--bg-surface);
+    border-left: 1px solid var(--border-color-soft);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.chat-resizer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -3px;
+    width: 6px;
+    cursor: ew-resize;
+    z-index: 10;
+    background-color: transparent;
+    transition: background-color 0.2s;
+}
+
+.chat-resizer:hover, .chat-resizer.active {
+    background-color: var(--color-cyan);
+}
+
+.chat-ust-bolge {
+    padding: 0.85rem;
+    border-bottom: 1px solid var(--border-color-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.robot-kutusu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color-soft);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+}
+
+.robot-face-svg {
+    flex-shrink: 0;
+}
+
+.robot-etiket h4 {
+    font-size: 0.78rem;
+    color: var(--text-primary);
+}
+.robot-etiket p {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+}
+
+.chat-yonetici-bar {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.sohbet-dropdown {
+    flex: 1;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.74rem;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.chat-mesaj-listesi {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: rgba(248, 250, 252, 0.4);
+}
+
+.mesaj {
+    max-width: 98%;
+    display: flex;
+    flex-direction: column;
+}
+.mesaj.kullanici {
+    align-self: flex-end;
+    max-width: 90%;
+}
+.mesaj.asistan {
+    align-self: flex-start;
+    width: 100%;
+}
+
+/* Pill-shaped bubbles */
+.mesaj-icerik {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    white-space: pre-wrap;
+}
+
+.mesaj.kullanici .mesaj-icerik {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-weight: 500;
+    border-bottom-right-radius: 2px;
+}
+
+.mesaj.asistan .mesaj-icerik {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    color: var(--text-primary);
+    border-bottom-left-radius: 2px;
+}
+
+.chat-girdi-konteyner {
+    padding: 0.75rem;
+    border-top: 1px solid var(--border-color-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background-color: var(--bg-surface);
+}
+
+.chat-girdi-konteyner textarea {
+    height: 44px;
+    resize: none;
+    border-radius: 5px;
+    padding: 0.4rem 0.6rem;
+    box-shadow: none;
+}
+
+/* -------------------------------------------------------------
+   SVG ROBOT STATE DYNAMIC STYLING
+   ------------------------------------------------------------- */
+.face-plate {
+    transition: fill 0.3s, stroke 0.3s;
+    fill: #f8fafc;
+    stroke: #e2e8f0;
+}
+
+.anten-tip {
+    transition: fill 0.3s;
+    fill: var(--color-cyan);
+}
+
+.eye-pupil {
+    transition: fill 0.2s, transform 0.2s;
+    fill: var(--color-cyan);
+}
+
+.eye-pulse {
+    transition: fill 0.2s;
+    fill: url(#eye-glow);
+}
+
+/* State idle */
+.robot-face-svg.state-idle .eye-pulse {
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+.robot-face-svg.state-idle .face-plate {
+    animation: breathingFace 3s ease-in-out infinite alternate;
+}
+
+/* State thinking */
+.robot-face-svg.state-thinking .eye-pupil {
+    fill: var(--color-yellow);
+}
+.robot-face-svg.state-thinking .eye-pulse {
+    fill: url(#eye-glow-thinking);
+    animation: pulseGlowThinking 0.8s ease-in-out infinite alternate;
+}
+.robot-face-svg.state-thinking .anten-tip {
+    fill: var(--color-yellow);
+    animation: antenFlashing 0.3s infinite alternate;
+}
+.robot-face-svg.state-thinking .face-plate {
+    stroke: var(--color-yellow);
+}
+
+/* State success */
+.robot-face-svg.state-success .eye-pupil {
+    fill: var(--color-green);
+}
+.robot-face-svg.state-success .eye-pulse {
+    fill: url(#eye-glow-success);
+}
+.robot-face-svg.state-success .anten-tip {
+    fill: var(--color-green);
+}
+.robot-face-svg.state-success .face-plate {
+    stroke: var(--color-green);
+}
+
+/* State error */
+.robot-face-svg.state-error .eye-pupil {
+    fill: var(--color-red);
+}
+.robot-face-svg.state-error .eye-pulse {
+    fill: url(#eye-glow-error);
+}
+.robot-face-svg.state-error .anten-tip {
+    fill: var(--color-red);
+}
+.robot-face-svg.state-error .face-plate {
+    stroke: var(--color-red);
+    animation: shakePlate 0.3s ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0% { r: 7px; opacity: 0.3; }
+    100% { r: 12px; opacity: 0.5; }
+}
+
+@keyframes pulseGlowThinking {
+    0% { r: 6px; opacity: 0.2; }
+    100% { r: 15px; opacity: 0.7; }
+}
+
+@keyframes antenFlashing {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+@keyframes breathingFace {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-1.5px); }
+}
+
+@keyframes shakePlate {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-2px); }
+    40%, 80% { transform: translateX(2px); }
+}
+
+/* Voice lines */
+.voice-line-1, .voice-line-2, .voice-line-3 {
+    transform-origin: center;
+    transition: stroke 0.3s;
+    stroke: var(--color-cyan);
+}
+
+.robot-face-svg.state-thinking .voice-line-1,
+.robot-face-svg.state-thinking .voice-line-2,
+.robot-face-svg.state-thinking .voice-line-3 {
+    stroke: var(--color-yellow);
+}
+
+.robot-face-svg.state-thinking .voice-line-1 {
+    animation: talkLine 0.5s infinite alternate;
+}
+.robot-face-svg.state-thinking .voice-line-2 {
+    animation: talkLine 0.5s infinite alternate 0.1s;
+}
+.robot-face-svg.state-thinking .voice-line-3 {
+    animation: talkLine 0.5s infinite alternate 0.2s;
+}
+
+.robot-face-svg.state-success .voice-line-1,
+.robot-face-svg.state-success .voice-line-2,
+.robot-face-svg.state-success .voice-line-3 {
+    stroke: var(--color-green);
+}
+
+.robot-face-svg.state-error .voice-line-1,
+.robot-face-svg.state-error .voice-line-2,
+.robot-face-svg.state-error .voice-line-3 {
+    stroke: var(--color-red);
+}
+
+@keyframes talkLine {
+    0% { transform: scaleX(0.7); }
+    100% { transform: scaleX(1.3); }
+}
+
+/* -------------------------------------------------------------
+   AI OPERATION MODAL PORTAL
+   ------------------------------------------------------------- */
+.islem-modal-arka-plan {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.25);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.islem-modal-kutu {
+    width: 400px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transform: scale(0.97);
+    animation: modalPulseIn 0.2s ease-out forwards;
+}
+
+.islem-modal-baslik {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color-soft);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-main);
+}
+
+.islem-modal-parilti {
+    font-size: 0.9rem;
+    color: var(--color-cyan);
+}
+
+.islem-modal-baslik h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.islem-modal-icerik {
+    padding: 1.75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.islem-yukleyici {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.donen-yukleyici {
+    animation: rotateLoading 1.5s linear infinite;
+    width: 100%;
+    height: 100%;
+}
+.donen-yukleyici .yol {
+    stroke: var(--color-cyan);
+    stroke-linecap: round;
+    animation: dashLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes rotateLoading {
+    100% { transform: rotate(360deg); }
+}
+@keyframes dashLoading {
+    0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+    50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+    100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
+}
+
+#islem-modal-metni {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.islem-kod-onizleme {
+    width: 100%;
+    max-height: 120px;
+    background-color: var(--bg-main);
+    border-radius: 5px;
+    padding: 0.65rem;
+    overflow-y: auto;
+    text-align: left;
+    border: 1px solid var(--border-color-soft);
+}
+.islem-kod-onizleme pre {
+    margin: 0;
+}
+.islem-kod-onizleme code {
+    font-size: 0.72rem;
+    color: var(--color-green);
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* -------------------------------------------------------------
+   UTILITY ANIMATIONS
+   ------------------------------------------------------------- */
+.animate-fade-in {
+    animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------------------
+   NOTIFICATIONS PANEL
+   ------------------------------------------------------------- */
+.bildirim-alani {
+    position: relative;
+}
+
+.bildirim-ikonu {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid var(--border-color-soft);
+    background-color: var(--bg-surface);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--text-secondary);
+    position: relative;
+    user-select: none;
+}
+
+.bildirim-ikonu:hover {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    background-color: var(--bg-main);
+}
+
+.bildirim-sayaci {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: var(--color-cyan);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1.5px solid var(--bg-surface);
+}
+
+.bildirim-paneli {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    width: 280px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 6px;
+    box-shadow: var(--shadow-lg);
+    display: none;
+    z-index: 100;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.bildirim-paneli.aktif {
+    display: flex;
+}
+
+.bildirim-baslik {
+    padding: 0.65rem 0.85rem;
+    font-weight: 700;
+    font-size: 0.76rem;
+    border-bottom: 1px solid var(--border-color-soft);
+    background-color: var(--bg-main);
+}
+
+.bildirim-listesi {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.bos-bildirim {
+    padding: 1.25rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    font-size: 0.74rem;
+}
+
+/* -------------------------------------------------------------
+   CUSTOM DIALOG MODAL (Alert/Confirm/Prompt)
+   ------------------------------------------------------------- */
+.dialog-modal-arka-plan {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.25);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.dialog-modal-kutu {
+    width: 380px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transform: scale(0.97);
+    animation: modalPulseIn 0.2s ease-out forwards;
+}
+
+.dialog-modal-baslik {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color-soft);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-main);
+}
+
+.dialog-modal-baslik h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.dialog-modal-icerik {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+#dialog-mesaj {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.dialog-girdi-grubu {
+    width: 100%;
+}
+
+.dialog-buton-grubu {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+}
+
+/* AI Chat Operation Cards Styling */
+.chat-islem-karti {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.35rem 0;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 100%;
+}
+
+.chat-islem-karti.success {
+    border-left: 3px solid var(--color-green);
+}
+
+.chat-islem-karti.info {
+    border-left: 3px solid var(--color-cyan);
+}
+
+.chat-islem-karti.error {
+    border-left: 3px solid var(--color-red);
+}
+
+.islem-karti-ust {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.islem-karti-ust.success {
+    color: var(--color-green);
+}
+
+.islem-karti-ust.info {
+    color: var(--color-cyan);
+}
+
+.islem-karti-ust.error {
+    color: var(--color-red);
+}
+
+.islem-karti-mesaj {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.islem-karti-kod {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color-soft);
+    border-radius: 5px;
+    padding: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-primary);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+/* Remove default message bubble styling when it wraps an operation card */
+.mesaj.asistan:has(.chat-islem-karti) .mesaj-icerik {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* -------------------------------------------------------------
+   MARKDOWN PARSER STYLES FOR CHAT
+   ------------------------------------------------------------- */
+.markdown-body {
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.markdown-body p {
+    margin-bottom: 0.75rem;
+}
+
+.markdown-body p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-body strong {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.markdown-body ul, .markdown-body ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+}
+
+.markdown-body li {
+    margin-bottom: 0.25rem;
+}
+
+.markdown-body code {
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 0.15rem 0.3rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+}
+
+.markdown-body pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 0.75rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.markdown-body pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: 0.74rem;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
