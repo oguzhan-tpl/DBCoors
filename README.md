@@ -8,7 +8,7 @@
 
 **Sohbet Arayüzü Üzerinden SQL Şemaları Çizen ve Sentetik Veri Dolduran Otonom Sistem**
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=00FF9D&center=true&vCenter=true&width=800&lines=Sadece+isteyin,+veritaban%C4%B1+saniyeler+i%C3%A7inde+kurulsun...;Faker+ile+tek+t%C4%B1kla+binlerce+sentetik+veri+%C3%BCretin...;Gemini+ve+Qwen+altyap%C4%B1s%C4%B1yla+hatas%C4%B1z+mimariler+in%C5%9Fa+edin...;Siz+kahvenizi+yudumlarken+sistem+kendini+yazs%C4%B1n...;DBCoors+ile+Gelece%C4%9Fe+Ho%C5%9F+Geldiniz!" alt="DBCoors Özellikler" />
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=00FF9D&center=true&vCenter=true&width=800&lines=Sadece+isteyin,+veritaban%C4%B1+saniyeler+i%C3%A7inde+kurulsun...;Faker+ile+tek+t%C4%B1kla+binlerce+sentetik+veri+%C3%BCretin...;Gemini+ve+Qwen+altyap%C4%B1s%C4%B1yla+hatas%C4%B1z+mimariler+in%C5%9Fa+edin...;Siz+kahvenizi+yudumlarken+sistem+kendini+yazs%C4%B1n...;DBCoors+ile+Gelece%C4%9Fe+Ho%C5%9F+Geldiniz!;O%C4%9EUZHAN+TOPAL" alt="DBCoors Özellikler" />
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
